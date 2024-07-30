@@ -1,3 +1,5 @@
+package learning;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,10 +16,10 @@ public class CLI_kg_lb {
         
         System.out.println("\n" + title);
         System.out.println("-".repeat(title_length));
-        System.out.println("Choose the conversation direction:");
         System.out.println("A. Kilograms >> Pounds");
         System.out.println("B. Pounds >> Kilograms");
         System.out.println("C. Quit\n");
+        System.out.print("Choose the conversation direction (A/B/C): ");
         String user_input_conv_dir = scanner.nextLine().toLowerCase();
         
 

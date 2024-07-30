@@ -1,4 +1,5 @@
-import java.util.ArrayList;
+package learning;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -29,13 +30,7 @@ public class CLI_multiple_unit_types {
 
 
     static boolean Input_validate_unit_type_selection(String user_input, HashMap<String, String> map) {
-        ArrayList<String> keys_alist = new ArrayList<>();
-
-        for (Map.Entry<String, String> entry : map.entrySet()) {
-            keys_alist.add(entry.getKey());
-            }
-        
-        if (keys_alist.contains(user_input)) {
+        if (map.keySet().contains(user_input)) {
             return true;
         }
         else {
