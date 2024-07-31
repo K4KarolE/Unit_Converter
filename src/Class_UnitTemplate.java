@@ -15,6 +15,8 @@ import javax.swing.*;
 public class Class_UnitTemplate {
 
     Class_Frame fc = new Class_Frame();
+    Class_Rect rect = new Class_Rect();
+    Class_WidgetProperties p = new Class_WidgetProperties();
 
 
     static boolean field_value_validation(String field_value) {
@@ -51,16 +53,19 @@ public class Class_UnitTemplate {
     public void frame_set_properties_wrapper() {
         fc.frame_set_properties();
     }
+
+    
+    public void frame_add_rect() {
+        rect.setBounds(0,0, p.FRAME_WIDTH, p.FRAME_HEIGHT);
+        fc.frame.add(rect);
+    }
     
 
     public void add_converter(String title, HashMap<String, String> hash_map, int x_grid, int y_grid) {
 
-        
         Class_WidgetProperties p = new Class_WidgetProperties();
         
-        int x_push = x_grid * (p.WIDGET_WIDTH + 30);
-        int y_push = y_grid * (p.WIDGET_HEIGHT * 9);
-    
+        
         // COMBO BOX OPTIONS
         ArrayList<String> hash_map_al = new ArrayList<>(hash_map.keySet());
         int hash_map_size = hash_map_al.size();
@@ -145,6 +150,9 @@ public class Class_UnitTemplate {
         
 
         // WIDGETS POS
+        int x_push = x_grid * (p.WIDGET_WIDTH + 30);
+        int y_push = y_grid * (p.WIDGET_HEIGHT * 9);
+
         label_title.setBounds(p.BASE_X + x_push, p.getPosY(-1) + y_push, p.WIDGET_WIDTH, p.WIDGET_HEIGHT);
         field_from.setBounds(p.BASE_X + x_push, p.getPosY(0) + y_push, p.WIDGET_WIDTH, p.WIDGET_HEIGHT);
         combo_box_unit_from.setBounds(p.BASE_X + x_push, p.getPosY(1) + y_push, p.WIDGET_WIDTH, p.WIDGET_HEIGHT);

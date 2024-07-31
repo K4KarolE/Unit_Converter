@@ -18,8 +18,9 @@ public class Class_Frame {
         frame.setIconImage(icon);
         frame.setTitle("Unit Converter");
         frame.setLayout(null);
-        frame.setVisible(true);
         frame.setBounds(p.FRAME_POS_X,p.FRAME_POS_Y,p.FRAME_WIDTH,p.FRAME_HEIGHT);
         frame.getContentPane().setBackground(new java.awt.Color(243, 243, 243));
+        frame.setResizable(false);
+        frame.setVisible(true);
     }
 }
