@@ -7,7 +7,7 @@ import java.awt.Color;
  
 
  
-public class swing_frame_and_button {
+public class Swing_frame_and_button {
     
     public static void main(String[] args)     {
     
