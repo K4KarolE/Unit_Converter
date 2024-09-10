@@ -8,11 +8,11 @@ import java.awt.Image;
 
 public class Class_Frame {
 
-    public JFrame frame = new JFrame();
-    Class_WidgetProperties p = new Class_WidgetProperties();
+    static JFrame frame = new JFrame();
+    static Class_WidgetProperties p = new Class_WidgetProperties();
 
 
-    public void frame_set_properties() {
+    static void frame_set_properties() {
 
         Image icon = Toolkit.getDefaultToolkit().getImage("./docs/frame_icon.png");
         frame.setIconImage(icon);

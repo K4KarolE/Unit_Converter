@@ -5,10 +5,12 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import javax.swing.*;
+
 
 
 
@@ -58,6 +60,15 @@ public class Class_UnitTemplate {
     public void frame_add_rect() {
         rect.setBounds(0,0, p.FRAME_WIDTH, p.FRAME_HEIGHT);
         fc.frame.add(rect);
+    }
+
+
+    static ImageIcon generateIcon(Integer imgSize, String filePath) {
+        ImageIcon iconRaw = new ImageIcon(filePath);
+        Image image = iconRaw.getImage();
+        Image newImage = image.getScaledInstance(imgSize, imgSize,  java.awt.Image.SCALE_SMOOTH);
+        ImageIcon icon = new ImageIcon(newImage);
+        return icon;
     }
     
 
@@ -117,10 +128,30 @@ public class Class_UnitTemplate {
            widget.setForeground(label_color);
         }
 
+    
 
-        JButton button = new JButton("Convert");
-        button.setFont(label_font_style);
-        button.addActionListener(new ActionListener() {
+        JButton button_switch_units = new JButton();
+        ImageIcon icon = generateIcon(17, "./docs/button_switch.png");
+        button_switch_units.setIcon(icon);
+        button_switch_units.setFont(label_font_style);
+        button_switch_units.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Integer unit_from_index = combo_box_unit_from.getSelectedIndex();
+                Integer unit_to_index = combo_box_unit_to.getSelectedIndex();
+                combo_box_unit_from.setSelectedIndex(unit_to_index);
+                combo_box_unit_to.setSelectedIndex(unit_from_index);
+            }
+        });
+        // FLAT BUTTON
+        button_switch_units.setBorderPainted(false);
+        button_switch_units.setFocusPainted(false);
+        button_switch_units.setContentAreaFilled(false);
+
+
+        JButton button_convert = new JButton("Convert");
+        button_convert.setFont(label_font_style);
+        button_convert.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
@@ -130,11 +161,11 @@ public class Class_UnitTemplate {
 
                     double field_from_value_dbl = Double.parseDouble(field_from_value);
                     
-                    String unit_from_key = combo_box_unit_from.getItemAt(combo_box_unit_from.getSelectedIndex());
+                    String unit_from_key = combo_box_unit_from.getSelectedItem().toString();
                     String unit_from_value = hash_map.get(unit_from_key);
                     double unit_from_dbl = Double.parseDouble(unit_from_value);
                     
-                    String unit_to_key = combo_box_unit_to.getItemAt(combo_box_unit_to.getSelectedIndex());
+                    String unit_to_key = combo_box_unit_to.getSelectedItem().toString();
                     String unit_to_value = hash_map.get(unit_to_key);
                     double unit_to_dbl = Double.parseDouble(unit_to_value);
 
@@ -151,7 +182,7 @@ public class Class_UnitTemplate {
 
         // WIDGETS POS
         int x_push = x_grid * (p.WIDGET_WIDTH + 30);
-        int y_push = y_grid * (p.WIDGET_HEIGHT * 9);
+        int y_push = (int) (y_grid * (p.WIDGET_HEIGHT * 9.6));
 
         label_title.setBounds(p.BASE_X + x_push, p.getPosY(-1) + y_push, p.WIDGET_WIDTH, p.WIDGET_HEIGHT);
         field_from.setBounds(p.BASE_X + x_push, p.getPosY(0) + y_push, p.WIDGET_WIDTH, p.WIDGET_HEIGHT);
@@ -165,7 +196,8 @@ public class Class_UnitTemplate {
         label_from_2nd.setBounds(p.BASE_X - p.X_DIFF_TEXT, p.getPosY(1) + y_push, p.WIDGET_WIDTH, p.WIDGET_HEIGHT);
         label_to_2nd.setBounds(p.BASE_X - p.X_DIFF_TEXT, p.getPosY(2) + y_push, p.WIDGET_WIDTH, p.WIDGET_HEIGHT);
 
-        button.setBounds(p.BASE_X + x_push, p.getPosY(4.5) + y_push, p.WIDGET_WIDTH, p.WIDGET_HEIGHT);
+        button_switch_units.setBounds(p.BASE_X + x_push, p.getPosY(3.9) + y_push, p.WIDGET_WIDTH, p.WIDGET_HEIGHT);
+        button_convert.setBounds(p.BASE_X + x_push, p.getPosY(4.8) + y_push, p.WIDGET_WIDTH, p.WIDGET_HEIGHT);
         
         Component[] widgets_array = {
             label_title,
@@ -177,7 +209,8 @@ public class Class_UnitTemplate {
             label_to,
             label_from_2nd,
             label_to_2nd,
-            button
+            button_switch_units,
+            button_convert
         };
 
         for (Component widget : widgets_array) {

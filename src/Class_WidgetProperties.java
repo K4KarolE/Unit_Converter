@@ -2,7 +2,7 @@ package src;
 
 public class Class_WidgetProperties {
     public int FRAME_WIDTH = 650;
-    public int FRAME_HEIGHT = 540;
+    public int FRAME_HEIGHT = 560;
     public int FRAME_POS_X = 800;
     public int FRAME_POS_Y = 600;
 
