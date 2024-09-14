@@ -17,7 +17,9 @@ public class Class_UnitTemplate {
     Class_Frame fc = new Class_Frame();
     Class_Rect rect = new Class_Rect();
     Class_WidgetProperties p = new Class_WidgetProperties();
+    Class_Json js = new Class_Json();
     static int unitConvCounterStart = 0;
+    boolean mapGeneratedFromJson = false;
 
 
     static boolean field_value_validation(String field_value) {
@@ -72,10 +74,18 @@ public class Class_UnitTemplate {
     
 
     public void add_converter(String title, HashMap<String, String> hash_map, int x_grid, int y_grid) {
+        /* This method is called for every unit types in the Unit_converter class
+         * It creates fields, labels; comboboxes with the unit type options
+         * from the passed hashmap
+        */ 
         
         unitConvCounterStart++;
         int unitConvCounter = unitConvCounterStart;
-        Class_WidgetProperties p = new Class_WidgetProperties();
+
+        if (!mapGeneratedFromJson) {
+            mapGeneratedFromJson = true;
+            js.getMapFromJsonGrouped();
+        }
         
         
         // COMBO BOX OPTIONS
@@ -104,9 +114,19 @@ public class Class_UnitTemplate {
 
         JComboBox<String> combo_box_unit_from = new JComboBox<>(combo_box_options);
         JComboBox<String> combo_box_unit_to = new JComboBox<>(combo_box_options);
-
         combo_box_unit_from.setFont(combo_box_font_style);
         combo_box_unit_to.setFont(combo_box_font_style);
+
+        // SET THE PREVIOUSLY USED UNIT`S FROM/TO VALUES
+        Integer[] mapUnitIndexes = js.getMapValue(unitConvCounter);
+        if (combo_box_options.length >= mapUnitIndexes[0]) {
+            combo_box_unit_from.setSelectedIndex(mapUnitIndexes[0]);
+        }
+        if (combo_box_options.length >= mapUnitIndexes[1]) {
+            combo_box_unit_to.setSelectedIndex(mapUnitIndexes[1]);
+        }
+
+
         
         Color label_color = new Color(70, 70, 70);
         JLabel label_title = new JLabel(title, SwingConstants.CENTER);
@@ -132,7 +152,7 @@ public class Class_UnitTemplate {
     
 
         JButton button_switch_units = new JButton();
-        ImageIcon icon = generateIcon(17, "./docs/button_switch.png");
+        ImageIcon icon = generateIcon(17, "./unit_converter/src/main/resources/button_switch.png");
         button_switch_units.setIcon(icon);
         button_switch_units.setFont(label_font_style);
         button_switch_units.addActionListener(new ActionListener() {
@@ -142,7 +162,6 @@ public class Class_UnitTemplate {
                 Integer unit_to_index = combo_box_unit_to.getSelectedIndex();
                 combo_box_unit_from.setSelectedIndex(unit_to_index);
                 combo_box_unit_to.setSelectedIndex(unit_from_index);
-                System.out.println(String.valueOf(unitConvCounter));
             }
         });
         // FLAT BUTTON
@@ -156,6 +175,12 @@ public class Class_UnitTemplate {
         button_convert.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                js.editMapWriteJsonGrouped(
+                    unitConvCounter,
+                    combo_box_unit_from.getSelectedIndex(),
+                    combo_box_unit_to.getSelectedIndex()
+                    );
                 
                 String field_from_value = field_from.getText();
 
