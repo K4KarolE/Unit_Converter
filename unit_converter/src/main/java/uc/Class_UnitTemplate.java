@@ -1,4 +1,4 @@
-package src;
+package uc;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -12,13 +12,12 @@ import java.util.HashMap;
 import javax.swing.*;
 
 
-
-
 public class Class_UnitTemplate {
 
     Class_Frame fc = new Class_Frame();
     Class_Rect rect = new Class_Rect();
     Class_WidgetProperties p = new Class_WidgetProperties();
+    static int unitConvCounterStart = 0;
 
 
     static boolean field_value_validation(String field_value) {
@@ -73,7 +72,9 @@ public class Class_UnitTemplate {
     
 
     public void add_converter(String title, HashMap<String, String> hash_map, int x_grid, int y_grid) {
-
+        
+        unitConvCounterStart++;
+        int unitConvCounter = unitConvCounterStart;
         Class_WidgetProperties p = new Class_WidgetProperties();
         
         
@@ -141,6 +142,7 @@ public class Class_UnitTemplate {
                 Integer unit_to_index = combo_box_unit_to.getSelectedIndex();
                 combo_box_unit_from.setSelectedIndex(unit_to_index);
                 combo_box_unit_to.setSelectedIndex(unit_from_index);
+                System.out.println(String.valueOf(unitConvCounter));
             }
         });
         // FLAT BUTTON

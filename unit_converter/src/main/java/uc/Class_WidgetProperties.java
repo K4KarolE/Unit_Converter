@@ -1,4 +1,4 @@
-package src;
+package uc;
 
 public class Class_WidgetProperties {
     public int FRAME_WIDTH = 650;

@@ -1,7 +1,6 @@
-import java.util.HashMap;
+package uc;
 
-import src.Class_UnitTemplate;
-import src.Class_UnitMaps;
+import java.util.HashMap;
 
 
 public class Unit_converter {
