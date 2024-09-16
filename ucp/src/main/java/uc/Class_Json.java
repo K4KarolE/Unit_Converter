@@ -2,6 +2,8 @@ package uc;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Path;
 import java.util.HashMap;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -12,22 +14,51 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class Class_Json {
 
+
     static JsonNode jsonNode;
+    static ObjectMapper objectMapper = new ObjectMapper();
     static HashMap<String,HashMap<String,Integer>> mapLastUsedUnits;
 
-    static File jsonFile = new File("./unit_converter/src/main/resources/LastUsedUnits.json");
-    static ObjectMapper objectMapper = new ObjectMapper();
+    static String workingDir;
+    static String filePath;
+    static File jsonFile;
+
+    /*
+     * readFile_PathOf() / readFile_ClassLoader()
+     * learning: access resource files in a diff. way
+     */
+    static void readFile_PathOf() {
+        workingDir = Path.of("").toAbsolutePath().toString();
+        filePath = workingDir + "./ucp/src/main/java/uc/srcs/LastUsedUnits.json";
+        jsonFile = new File(filePath);
+        System.out.println("// " + filePath + " //");
+    }
 
 
-    static void setIndentForObjectMapper() {
-        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+    static void readFile_ClassLoader() {
+        try {
+            URL filePathURL = Class_Json.class.getClassLoader().getResource("LastUsedUnits.json");
+            filePath = filePathURL.toURI().getPath();
+        } catch (Exception e) {
+            System.out.println("\nFailed: filePathURL\n");
+            throw new RuntimeException(e);
+        }
+        System.out.println("** " + filePath + " **");
+        jsonFile = new File(filePath);
     }
 
 
     static void generateJsonNode() {
         try {
+            readFile_PathOf();
+            // readFile_ClassLoader();
             jsonNode = objectMapper.readTree(jsonFile);
         } catch (IOException e) {System.out.println("\nERROR: JSON path is not valid.\n");}
+    }
+
+
+    static void setIndentForObjectMapper() {
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
     }
 
 

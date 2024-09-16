@@ -4,7 +4,7 @@ package uc;
 import javax.swing.JFrame;
 import java.awt.Toolkit;
 import java.awt.Image;
-
+import java.nio.file.Path;
 
 
 public class Class_Frame {
@@ -12,10 +12,11 @@ public class Class_Frame {
     static JFrame frame = new JFrame();
     static Class_WidgetProperties p = new Class_WidgetProperties();
 
+    static String workingDir = Path.of("").toAbsolutePath().toString();
+    static String imgPath = workingDir + "./ucp/src/main/java/uc/srcs/frame_icon.png";
 
     static void frame_set_properties() {
 
-        String imgPath = "./unit_converter/src/main/resources/frame_icon.png";
         Image icon = Toolkit.getDefaultToolkit().getImage(imgPath);
         frame.setIconImage(icon);
         frame.setTitle("Unit Converter");

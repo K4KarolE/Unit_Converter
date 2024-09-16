@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Image;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -20,6 +21,9 @@ public class Class_UnitTemplate {
     Class_Json js = new Class_Json();
     static int unitConvCounterStart = 0;
     boolean mapGeneratedFromJson = false;
+
+    static String workingDir = Path.of("").toAbsolutePath().toString();
+    static String imgPath = workingDir + "./ucp/src/main/java/uc/srcs/button_switch.png";
 
 
     static boolean field_value_validation(String field_value) {
@@ -67,7 +71,7 @@ public class Class_UnitTemplate {
     static ImageIcon generateIcon(Integer imgSize, String filePath) {
         ImageIcon iconRaw = new ImageIcon(filePath);
         Image image = iconRaw.getImage();
-        Image newImage = image.getScaledInstance(imgSize, imgSize,  java.awt.Image.SCALE_SMOOTH);
+        Image newImage = image.getScaledInstance(imgSize, imgSize,  Image.SCALE_SMOOTH);
         ImageIcon icon = new ImageIcon(newImage);
         return icon;
     }
@@ -152,7 +156,7 @@ public class Class_UnitTemplate {
     
 
         JButton button_switch_units = new JButton();
-        ImageIcon icon = generateIcon(17, "./unit_converter/src/main/resources/button_switch.png");
+        ImageIcon icon = generateIcon(17, imgPath);
         button_switch_units.setIcon(icon);
         button_switch_units.setFont(label_font_style);
         button_switch_units.addActionListener(new ActionListener() {
