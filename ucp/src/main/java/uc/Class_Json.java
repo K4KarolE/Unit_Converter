@@ -31,7 +31,6 @@ public class Class_Json {
         workingDir = Path.of("").toAbsolutePath().toString();
         filePath = workingDir + "./ucp/src/main/java/uc/srcs/LastUsedUnits.json";
         jsonFile = new File(filePath);
-        System.out.println("// " + filePath + " //");
     }
 
 

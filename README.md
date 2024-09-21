@@ -1,5 +1,5 @@
 # Unit Converter
-- Converts the most popular unit types using `Swing` GUI library.
+- Converts the most popular unit types using `Swing`, `Jackson 2.17.2`, `Maven 3.9.8`, `Java 22`.
 - Clicking on the `Convert` button: it automatically saves the selected "from-to" combo box values
 - At startup it sets back the last used "from-to" combo box values for every unit types
 
@@ -11,10 +11,5 @@
     <img src="docs/promo/screenshot_error.png">
 </div>
 <br>
-
-## Requirements
-### Java - used: 22
-- https://www.oracle.com/java/technologies/downloads/
-
 
 ## Thank you all who worked on the modules used in this project!
