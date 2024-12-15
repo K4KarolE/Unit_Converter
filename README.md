@@ -1,5 +1,5 @@
 # Unit Converter
-- Converts the most popular unit types using `Swing`, `Jackson 2.17.2`, `Maven 3.9.8`, `Java 22`.
+- Converts the most popular unit types using `Swing`, `Jackson 2.17.2`, `Maven 3.9.9`, `Java 23`.
 - Clicking on the `Convert` button: it automatically saves the selected "from-to" combo box values
 - At startup it sets back the last used "from-to" combo box values for every unit types
 

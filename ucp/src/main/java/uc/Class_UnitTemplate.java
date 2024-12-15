@@ -23,7 +23,7 @@ public class Class_UnitTemplate {
     boolean mapGeneratedFromJson = false;
 
     static String workingDir = Path.of("").toAbsolutePath().toString();
-    static String imgPath = workingDir + "./ucp/src/main/java/uc/srcs/button_switch.png";
+    static String imgPath = workingDir + "/ucp/src/main/java/uc/srcs/button_switch.png";
 
 
     static boolean field_value_validation(String field_value) {

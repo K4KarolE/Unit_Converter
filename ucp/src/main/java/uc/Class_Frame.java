@@ -13,7 +13,7 @@ public class Class_Frame {
     static Class_WidgetProperties p = new Class_WidgetProperties();
 
     static String workingDir = Path.of("").toAbsolutePath().toString();
-    static String imgPath = workingDir + "./ucp/src/main/java/uc/srcs/frame_icon.png";
+    static String imgPath = workingDir + "/ucp/src/main/java/uc/srcs/frame_icon.png";
 
     static void frame_set_properties() {
 

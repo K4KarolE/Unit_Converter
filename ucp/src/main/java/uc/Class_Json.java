@@ -29,7 +29,7 @@ public class Class_Json {
      */
     static void readFile_PathOf() {
         workingDir = Path.of("").toAbsolutePath().toString();
-        filePath = workingDir + "./ucp/src/main/java/uc/srcs/LastUsedUnits.json";
+        filePath = workingDir + "/ucp/src/main/java/uc/srcs/LastUsedUnits.json";
         jsonFile = new File(filePath);
     }
 
